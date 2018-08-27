@@ -51,22 +51,22 @@ To run the experiments, download the following datasets and edit the `model_setu
 ### Pre-trained models
 
 * ImageNet LSVRC 2012 pre-trained models: The [`vgg-verydeep-16`](http://www.vlfeat.org/matconvnet/models/imagenet-vgg-verydeep-16.mat) and [`reset-101`](http://www.vlfeat.org/matconvnet/models/imagenet-resnet-101-dag.mat) ImageNet pre-trained models are used as our basic models. Download them from MatConvNet pre-trained models page.
-* B-CNN fine-tuned models: We also provided the B-CNN fine-tuned models with `vgg-verydeep-16` from which we can extract the CNN features and aggregate them to construct the image descriptor. Download the models for [CUB Birds](http://maxwell.cs.umass.edu/bcnn/models2/bcnn-cub-dd-net.mat), [FGVC Aircrafts](http://maxwell.cs.umass.edu/bcnn/models2/bcnn-aircrafts-dd.mat), or [Stanford Cars](http://maxwell.cs.umass.edu/bcnn/models2/bcnn-cars-dd.mat) to reproduce the accuracy provided provided in the paper.
+* B-CNN fine-tuned models: We also provide the B-CNN fine-tuned models with `vgg-verydeep-16` from which we can extract the CNN features and aggregate them to construct the image descriptor. Download the models for [CUB Birds](http://maxwell.cs.umass.edu/bcnn/models2/bcnn-cub-dd-net.mat), [FGVC Aircrafts](http://maxwell.cs.umass.edu/bcnn/models2/bcnn-aircrafts-dd.mat), or [Stanford Cars](http://maxwell.cs.umass.edu/bcnn/models2/bcnn-cars-dd.mat) to reproduce the accuracy provided in the paper.
 
 ### Testing the models:
 
 Solving the coefficients for &gamma;-democratic aggregation involves sinkhorn iteration. The hyperparameters  for the sinkhorn iteration are configurable in the entry codes `run_experiments_o2dp.m` and `run_experiments_sketcho2dp_resnet.m`. See the comment in the code for the detail.
 
-* Test second-order &gamma;-democratic aggregation: Point the variable `model_path` to the location of the model in `run_experiments_o2dp.m` and run the command `run_experiments_o2dp(dataset, gamma, gpuidx)`  in matlab terminal.
+* Second-order &gamma;-democratic aggregation: Point the variable `model_path` to the location of the model in `run_experiments_o2dp.m` and run the command `run_experiments_o2dp(dataset, gamma, gpuidx)`  in matlab terminal.
 
-  * An example:
+  * For example:
 
   ```matlab
-  % gamma is the hyper-parameter gamma for -democratic aggregation
+  % gamma is the hyper-parameter gamma for &gamma;-democratic aggregation
   % gpuidx is the index of gpu on which you run the experiment
   run_experiments_o2dp('mit_indoor', 0.3, 1) 
   ```
-  * Classification results: Sum and democratic aggregation can be achieved by setting the corresponding &gamma; values. The optimal &gamma; values are indicated in the parenthesis. In general &gamma;=0.5 performs reasonably well. For `DTD` and `FMD` these numbers are reported on the first split. For the fine-grained recognition datasets (&#8224;) the accuracies are achieved by using the fine-tuned B-CNN models while for the texture and indoor scene datasets the ImageNet pre-trained models are used.
+  * Classification results: Sum and democratic aggregation can be achieved by setting the proper values of &gamma;. The optimal &gamma; values are indicated in the parenthesis. In general &gamma;=0.5 performs reasonably well. For `DTD` and `FMD` these numbers are reported on the first split. For the fine-grained recognition datasets (&#8224;) the results are obtained by using the fine-tuned B-CNN models while for the texture and indoor scene datasets the ImageNet pre-trained `vgg-verydeep-16` model is used.
 
     <table align="center">
         <tr>
@@ -113,18 +113,18 @@ Solving the coefficients for &gamma;-democratic aggregation involves sinkhorn it
         </tr>
         </table>
 
-* Test second-order &gamma;-democratic aggregation in sketch space: Point the variable `model_path` to the location of the model in `run_experiments_sketcho2dp_resnet.m` and run the command `run_experiments_sketcho2dp_resnet(dataset, gamma, d, gpuidx)`  in matlab terminal. 
+* Second-order &gamma;-democratic aggregation in sketch space: Point the variable `model_path` to the location of the model in `run_experiments_sketcho2dp_resnet.m` and run the command `run_experiments_sketcho2dp_resnet(dataset, gamma, d, gpuidx)`  in matlab terminal. 
 
-  * An example:
+  * For example:
 
   ```matlab
-  % gamma is the hyper-parameter gamma for -democratic aggregation
+  % gamma is the hyper-parameter gamma for &gamma;-democratic aggregation
   % d is the dimension for the sketch space
   % gpuidx is the index of gpu on which you run the experiment
   run_experiments_sketcho2dp_resnet('mit_indoor', 0.5, 8192, 1) 
   ```
 
-  * The script aggregates the second-order ResNet features pre-trained on ImageNet and projected to 8192-dimensional sketch space with &gamma;-democratic aggregator achieving the following results. For `DTD` and `FMD` the accuracy is averaged over 10 splits.
+  * The script aggregates the second-order ResNet features pre-trained on ImageNet in a 8192-dimensional sketch space with &gamma;-democratic aggregator. With ResNet features the model achieves the following results. For `DTD` and `FMD` the accuracy is averaged over 10 splits.
 
     <table align="center">
         <tr>
