@@ -42,7 +42,7 @@ To run the experiments, download the following datasets and edit the `model_setu
 * [FGVC Aircrafts](http://www.robots.ox.ac.uk/~vgg/data/fgvc-aircraft/)
 * [Stanford Cars](https://ai.stanford.edu/~jkrause/cars/car_dataset.html)
 
-####Texture and indoor scene datasets:
+#### Texture and indoor scene datasets:
 
 * [Describable Textures Dataset (DTD)](https://www.robots.ox.ac.uk/~vgg/data/dtd/)
 * [Flickr Material Database (FMD)](https://people.csail.mit.edu/celiu/CVPR2010/FMD/)
@@ -62,7 +62,7 @@ Solving the coefficients for &gamma;-democratic aggregation involves sinkhorn it
   * For example:
 
   ```matlab
-  % gamma is the hyper-parameter gamma for &gamma;-democratic aggregation
+  % gamma is the hyper-parameter gamma for gamma-democratic aggregation
   % gpuidx is the index of gpu on which you run the experiment
   run_experiments_o2dp('mit_indoor', 0.3, 1) 
   ```
@@ -118,7 +118,7 @@ Solving the coefficients for &gamma;-democratic aggregation involves sinkhorn it
   * For example:
 
   ```matlab
-  % gamma is the hyper-parameter gamma for &gamma;-democratic aggregation
+  % gamma is the hyper-parameter gamma for gamma-democratic aggregation
   % d is the dimension for the sketch space
   % gpuidx is the index of gpu on which you run the experiment
   run_experiments_sketcho2dp_resnet('mit_indoor', 0.5, 8192, 1) 
