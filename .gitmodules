@@ -1,0 +1,9 @@
+[submodule "bcnn-package"]
+	path = bcnn-package
+	url = git@bitbucket.org:tsungyu/bcnn-package.git
+[submodule "matconvnet"]
+	path = matconvnet
+	url = https://github.com/vlfeat/matconvnet.git
+[submodule "vlfeat"]
+	path = vlfeat
+	url = https://github.com/vlfeat/vlfeat.git
