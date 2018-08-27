@@ -1,5 +1,18 @@
 function run_experiments_sketcho2dp_resnet(dataset, p, dout, gpuidx)
 
+% Copyright (C) 2018 Tsung-Yu Lin and Subhransu Maji.
+% All rights reserved.
+%
+% This file is part of the BCNN and is made available under
+% the terms of the BSD license (see the COPYING file).
+
+% input:
+% dataset: the name of the dataset. See the code for the options.
+% p: gamma value for the gamma-democratic pooling.
+% dout: the dimension of the sketched space.
+% gpuidx: the index of the gpu ob which you would like to run the
+% experiment. Use an empty array [] for running on cpu.
+
   if nargin < 2
       p = 0.5;
   end
